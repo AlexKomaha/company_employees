@@ -16,3 +16,5 @@ This website is a simple web application for managing information about company 
    - The database schema includes the `employees` table, which stores information about each employee.
 
 This simple web application provides the ability to view information about employees and filter this information by their names.
+
+Test commit
