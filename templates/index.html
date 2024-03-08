@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">   
+    <link rel="stylesheet" href="static/style.css">
     <title>Employees Search</title>
 </head>
-
 <body>
-    <h1>Employees List</h1>
-
+    <h1 class="mt-2 ml-2">Employees List</h1>
+    <div class="container">
+    <h2>Search by employee name or by country</h2>
+    <br>
         <!-- Get and filter employees//-->
         <form action="/selected_employees" method="post">
             <label for="name">Name:</label>
             <input type="text" name="name" id="name">
-            <button type="submit">Filter and Submit</button>
+            <button type="submit" class="btn btn-warning">Search by Name</button>
+            <br>
+            <br>
+            <label for="country">Country:</label>
+            <input type="text" name="country" id="country">
+            <button type="submit" class="btn btn-secondary">Search by Country</button>
         </form>
+        </div>
 <br>
     <!-- Display the employees -->
-    <table border="1">
-        <thead>
+    <table class="table">
+        <thead class="thead-dark">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Position</th>
                 <th>Hire Date</th>
                 <th>Salary</th>
-                <th>City</th>
                 <th>Country</th>
             </tr>
         </thead>
@@ -39,11 +46,9 @@
                     <td>{{ employee[3] }}</td>
                     <td>{{ employee[4] }}</td>
                     <td>{{ employee[5] }}</td>
-                    <td>{{ employee[6] }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 </body>
-
 </html>

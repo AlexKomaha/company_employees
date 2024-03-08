@@ -21,7 +21,7 @@ def close_connection(exception):
 def index():
     conn = get_db()
     conn_cursor = conn.cursor()
-    conn_cursor.execute("SELECT id, name, position, hire_date, salary, city, country FROM employees")
+    conn_cursor.execute("SELECT id, name, position, hire_date, salary, country FROM employees")
     employees_data = conn_cursor.fetchall()
     conn.close()
     
@@ -29,17 +29,23 @@ def index():
 
 @app.route("/selected_employees", methods=["POST"])
 def selected_employees():
-    selected_employee_names = request.form.getlist("name")
-    print("Selected employee names:", selected_employee_names)
+    search_name = request.form.get("name")
+    search_country = request.form.get("country")
     
     conn = get_db()
     conn_cursor = conn.cursor()
 
-    selected_employees_data = []
-    for employee_name in selected_employee_names:
-        conn_cursor.execute("SELECT id, name, position, hire_date, salary, city, country FROM employees WHERE name = ?", (employee_name,))
-        selected_employee_data = conn_cursor.fetchone()
-        selected_employees_data.append(selected_employee_data)
+    if search_name:
+        conn_cursor.execute("SELECT id, name, position, hire_date, salary, country FROM employees WHERE name LIKE ?", ('%' + search_name + '%',))
+        print("Selected employee name:", search_name)
+    elif search_country:
+        conn_cursor.execute("SELECT id, name, position, hire_date, salary, country FROM employees WHERE country LIKE ?", ('%' + search_country + '%',))
+        print("Selected country name:", search_country)
+    else:
+        selected_employees_data = []
+        conn.close()
+        return render_template("selected_employees.html", selected_employees = selected_employees_data)
+    selected_employees_data = conn_cursor.fetchall()
     conn.close()
     
     return render_template("selected_employees.html", selected_employees=selected_employees_data)

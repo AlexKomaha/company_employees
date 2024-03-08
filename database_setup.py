@@ -19,9 +19,6 @@ def generate_random_position():
 def generate_random_name():
     return fake.name()
 
-def generate_random_city():
-    return fake.city()
-
 def generate_random_country():
     return fake.country()
 
@@ -36,7 +33,6 @@ def create_and_populate_database():
                         position TEXT,
                         hire_date DATE,
                         salary INTEGER,
-                        city TEXT,
                         country TEXT)
                     ''')
     
@@ -45,12 +41,11 @@ def create_and_populate_database():
         position = generate_random_position()
         hire_date = generate_random_hire_date()
         salary = generate_random_salary()
-        city = generate_random_city()
         country = generate_random_country()
 
         conn_cursor.execute('''INSERT INTO employees
-                     (name, position, hire_date, salary, city, country) 
-                     VALUES(?, ?, ?, ?, ?, ?)''', (name, position, hire_date, salary, city, country))
+                     (name, position, hire_date, salary, country) 
+                     VALUES(?, ?, ?, ?, ?)''', (name, position, hire_date, salary, country))
 
     conn.commit()
     conn.close()
