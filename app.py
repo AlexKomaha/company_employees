@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, g
+from flask import Flask, render_template, request, g, redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -26,6 +26,24 @@ def index():
     conn.close()
 
     return render_template("index.html", employees=employees_data)
+
+@app.route("/add_employee", methods=["GET", "POST"])
+def add_employee():
+    if request.method == "POST":
+        name = request.form.get("name")
+        position = request.form.get("position")
+        experience = request.form.get("experience")
+        salary = request.form.get("salary")
+        country = request.form.get("country")
+        conn = get_db()
+        conn_cursor = conn.cursor()
+
+        conn_cursor.execute("INSERT INTO employees(name, position, experience, salary, country) VALUES(?, ?, ?, ?, ?)", (name, position, experience, salary, country))
+
+        conn.commit()
+        conn.close()
+
+    return render_template("add_employee.html")
 
 @app.route("/selected_employees", methods=["POST"])
 def selected_employees():
