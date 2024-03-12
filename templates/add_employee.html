@@ -4,30 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="static/script.js" defer></script>
+    <script src="static/employee.js" defer></script>
     <title>Add an Employee</title>
 </head>
 <body>
+  <body style="padding: 20px; background-color: rgb(241, 240, 236);">
     <h1>Add an Employee</h1>
     <form id="employeeForm" action="/add_employee" method="post">
-      <label for="name">Name:</label>
-      <input type="text" name="name" required>
-      <br>
-      <label for="position">Position:</label>
-      <input type="text" name="position" required>
-      <br>
-      <label for="experience">Experience:</label>
-      <input type="number" name="experience" required>
-      <br>
-      <label for="salary">Salary:</label>
-      <input type="number" name="salary" required>
-      <br>
-      <label for="country">Country:</label>
-      <input type="text" name="country" required>
-      <button type="submit" class="btn btn-dark">Add Employee</button>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="position">Position:</label>
+            <input type="text" class="form-control" name="position" required>
+        </div>
+        <div class="form-group">
+            <label for="experience">Experience:</label>
+            <input type="number" class="form-control" name="experience" required>
+        </div>
+        <div class="form-group">
+            <label for="salary">Salary:</label>
+            <input type="number" class="form-control" name="salary" required>
+        </div>
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" class="form-control" name="country" required>
+        </div>
+        <button type="submit" class="btn btn-dark">Add Employee</button>
     </form>
+    <br>
     <form action="/" method="get">
-      <button type="submit" class="btn btn-dark">Return</button>
+        <button type="submit" class="btn btn-dark">Return</button>
     </form>
 </body>
 </html>
