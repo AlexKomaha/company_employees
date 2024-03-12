@@ -9,3 +9,6 @@ function trimInputCountry() {
   var trimmedValue = inputValue.trim();
   document.getElementById("country").value = trimmedValue
 }
+
+var button = document.getElementById('button');
+button.style.marginLeft = '10px';
